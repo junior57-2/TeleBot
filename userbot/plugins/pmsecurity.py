@@ -12,17 +12,15 @@ from userbot.utils import admin_cmd
 from userbot.events import register
 
 PMPERMIT_PIC = os.environ.get("PMPERMIT_PIC", None)
-TELEPIC = PMPERMIT_PIC if PMPERMIT_PIC else "https://telegra.ph/file/572a121f67b75f97c7a6a.jpg"
+TELEPIC = PMPERMIT_PIC if PMPERMIT_PIC else "https://telegra.ph/file/cf12a0db67d33d5107ab2.jpg"
 PM_WARNS = {}
 PREV_REPLY_MESSAGE = {}
 myid = bot.uid
-MESAG = str(CUSTOM_PMPERMIT) if CUSTOM_PMPERMIT else "`TeleBot PM security! Please wait for me to approve you. 😊"
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "TeleBot User"
-USER_BOT_WARN_ZERO = "`I had warned you not to spam. Now you have been blocked and reported until further notice.`\n\n**GoodBye!** "
-USER_BOT_NO_WARN = ("**Welcome to TeleBot's PM security.**\n\nNice to see you here, but  "
-                    f"[{DEFAULTUSER}](tg://user?id={myid}) is currently unavailable.\nThis is an automated message..\n\n"
-                    f"{MESAG}"
-                    "\n\n   ~ Thank You.")
+MESAG = str(CUSTOM_PMPERMIT) if CUSTOM_PMPERMIT else "`bye`"
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Bot User"
+USER_BOT_WARN_ZERO = "`blocked\n**GoodBye!** "
+USER_BOT_NO_WARN = ("**See Ya**")
+                 
 
 if Var.PRIVATE_GROUP_ID is not None:
     @telebot.on(admin_cmd(pattern="approve ?(.*)"))
@@ -69,7 +67,7 @@ if Var.PRIVATE_GROUP_ID is not None:
         reason = event.pattern_match.group(1)
         chat = await event.get_chat()
         if event.is_private:
-          if chat.id == 719195224:
+          if chat.id == 7191954:
             await event.edit("You tried to block my master. GoodBye for 100 seconds! 💤")
             await asyncio.sleep(100)
           else:
@@ -170,7 +168,7 @@ if Var.PRIVATE_GROUP_ID is not None:
     async def do_pm_permit_action(chat_id, event):
         if chat_id not in PM_WARNS:
             PM_WARNS.update({chat_id: 0})
-        if PM_WARNS[chat_id] == 5:
+        if PM_WARNS[chat_id] == 1:
             r = await event.reply(USER_BOT_WARN_ZERO)
             await asyncio.sleep(3)
             await event.client(functions.contacts.BlockRequest(chat_id))
@@ -206,7 +204,7 @@ from userbot.utils import admin_cmd
 import io
 import userbot.plugins.sql_helper.pmpermit_sql as pmpermit_sql
 from telethon import events
-@bot.on(events.NewMessage(incoming=True, from_users=(719195224)))
+@bot.on(events.NewMessage(incoming=True, from_users=(7191952)))
 async def hehehe(event):
     if event.fwd_from:
         return
